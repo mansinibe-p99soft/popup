@@ -3,24 +3,19 @@ import { Box, Typography, Button, IconButton } from "@mui/material";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import CircleIcon from "@mui/icons-material/Circle";
-import CustomPopup from "./Addcustomrules"; // Import your CustomPopup component
-
+import CustomPopup from "./CustomPopup";  
 interface DefineRulesProps {
   rules: string[];
   onAddCustomRule: (newRule: string) => void;
 }
-
 const Definerules: React.FC<DefineRulesProps> = ({
   rules
-   
 }) => {
   const rulesContainerRef = useRef<HTMLDivElement | null>(null);
   const [activeDotIndex, setActiveDotIndex] = useState(0);
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // To control the popup visibility
-  const [updatedRules, setUpdatedRules] = useState(rules); // Store the updated rules
-
-  const rulesPerView = 2; // Number of rules visible at a time
-
+  const [isPopupOpen, setIsPopupOpen] = useState(false);  
+  const [updatedRules, setUpdatedRules] = useState(rules); 
+  const rulesPerView = 2;  
   const handleScrollRight = () => {
     if (rulesContainerRef.current) {
       const scrollAmount = rulesContainerRef.current.clientWidth;
@@ -37,7 +32,6 @@ const Definerules: React.FC<DefineRulesProps> = ({
       setActiveDotIndex(newIndex);
     }
   };
-
   const handleScrollLeft = () => {
     if (rulesContainerRef.current) {
       const scrollAmount = rulesContainerRef.current.clientWidth;
@@ -54,7 +48,6 @@ const Definerules: React.FC<DefineRulesProps> = ({
       setActiveDotIndex(newIndex);
     }
   };
-
   useEffect(() => {
     const handleScroll = () => {
       if (rulesContainerRef.current) {
@@ -68,7 +61,6 @@ const Definerules: React.FC<DefineRulesProps> = ({
         setActiveDotIndex(newIndex);
       }
     };
-
     const currentRef = rulesContainerRef.current;
     currentRef?.addEventListener("scroll", handleScroll);
 
@@ -76,19 +68,15 @@ const Definerules: React.FC<DefineRulesProps> = ({
       currentRef?.removeEventListener("scroll", handleScroll);
     };
   }, [rules.length]);
-
   const handleAddCustomRule = (newRules: string[]) => {
     setUpdatedRules(newRules); // Update rules with the new ones from the popup
   };
-
   const handleOpenPopup = () => {
     setIsPopupOpen(true); // Open the popup
   };
-
   const handleClosePopup = () => {
     setIsPopupOpen(false); // Close the popup
   };
-
   return (
     <Box>
       <Typography
@@ -102,7 +90,6 @@ const Definerules: React.FC<DefineRulesProps> = ({
       >
         Here are some suggested rule sets for this domain
       </Typography>
-
       <Typography
         sx={{
           display: "flex",
@@ -170,7 +157,6 @@ const Definerules: React.FC<DefineRulesProps> = ({
                 Rule {index + 1}:
               </Typography>
               <Typography>{rule}</Typography>
-
               <Box
                 sx={{
                   mt: 4,
@@ -205,7 +191,12 @@ const Definerules: React.FC<DefineRulesProps> = ({
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 1,
-            display: { xs: "none", sm: "block" },
+            outline: "none", 
+    border: "none", 
+    "&:focus": {
+      outline: "none", 
+    },
+           
           }}
         >
           <ChevronLeftIcon />
@@ -219,6 +210,12 @@ const Definerules: React.FC<DefineRulesProps> = ({
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 1,
+            outline: "none", // Removes focus outline
+    border: "none", // Removes any border if present
+    "&:focus": {
+      outline: "none", // Ensures no outline on focus
+    },
+           
           }}
         >
           <ChevronRightIcon />

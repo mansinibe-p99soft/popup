@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Dialog, Box, Button } from "@mui/material";
-import Header from "./Header"; // Import the Header component
+import Header from "./Header";  
 
 interface PopupLayoutProps {
   open: boolean;
@@ -12,8 +12,8 @@ interface PopupLayoutProps {
   secondaryButtonClick: () => void;
   tertiaryButtonText?: string;
   tertiaryButtonClick?: () => void;
-  newActionButtonText?: string;  // New action button text
-  newActionButtonClick?: () => void;  // New action button click handler
+  newActionButtonText?: string;   
+  newActionButtonClick?: () => void;   
 }
 
 const PopupLayout: React.FC<PopupLayoutProps> = ({
@@ -26,10 +26,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
   secondaryButtonClick,
   tertiaryButtonText,
   tertiaryButtonClick,
-  // Accept newActionButtonClick from props
 }) => {
-   
-
   return (
     <Dialog
       open={open}
@@ -38,13 +35,8 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
       PaperProps={{ sx: { padding: "0px", borderRadius: "8px" } }}
     >
       <Box>
-        {/* Title Section with Header Component */}
         <Header title={title} />
-
-        {/* Children Section */}
         <Box sx={{ padding: "16px" }}>{children}</Box>
-
-        {/* Footer Section */}
         <Box
           sx={{
             display: "flex",
@@ -60,11 +52,11 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
               justifyContent: "space-between",
               alignItems: "center",
               flexWrap: "wrap",
+              gap: "px"
             }}
           >
-            {/* Box for the Tertiary Button */}
-            {tertiaryButtonText && (
-              <Box sx={{ padding: "4px 12px", borderRadius: "1px" }}>
+             {tertiaryButtonText && (
+              <Box sx={{ padding: "4px 12px", borderRadius: "1px", marginRight:"120px" }}>
                 <Button
                   variant="text"
                   onClick={tertiaryButtonClick}
@@ -74,10 +66,10 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                     border: "1px solid",
                     borderColor: "#D3D3D3",
                     transition: "none",
-                    outline: "none", // Ensures no outline on focus
+                    outline: "none", 
                     "&:focus, &:active": {
-                      border: "1px solid #D3D3D3", // Prevents border color change on focus
-                      outline: "none", // No outline on focus or active state
+                      border: "1px solid #D3D3D3",  
+                      outline: "none",  
                     },
                     ":hover": {
                       boxShadow: "#ECF0EA",
@@ -89,9 +81,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                 </Button>
               </Box>
             )}
-
-            {/* Box for the Secondary Button */}
-            <Box sx={{ padding: "4px 20px", marginLeft: "230px"  ,marginRight:"20px"}}>
+            <Box sx={{ display: "flex", gap: "8px"  }}>
               <Button
                 variant="outlined"
                 onClick={secondaryButtonClick}
@@ -102,46 +92,41 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                   borderColor: "#ECF0EA",
                   transition: "none",
                   "&:focus, &:active": {
-                    borderColor: "#ECF0EA", // Keeps border color the same when focused or active
-                    outline: "#ECF0EA", // Removes outline
-                    boxShadow: "none", // Removes any shadow effect
+                    borderColor: "#ECF0EA", 
+                    outline: "#ECF0EA",  
+                    boxShadow: "none",  
                   },
                   ":hover": {
                     boxShadow: "#ECF0EA",
-                    borderColor: "#ECF0EA", // Ensures no hover shadow
+                    borderColor: "#ECF0EA",  
                   },
                 }}
               >
                 {secondaryButtonText}
               </Button>
+
+              <Button
+                variant="contained"
+                onClick={primaryButtonClick}
+                sx={{
+                  backgroundColor: "#D3D3D3",
+
+                  transition: "none",
+                  boxShadow: "none",
+                  "&:focus, &:active": {
+                    border: "none", 
+                    outline: "none",  
+                    boxShadow: "none", 
+                  },
+                  ":hover": {
+                    boxShadow: "none",  
+                  },
+                }}
+              >
+                {primaryButtonText}
+              </Button>
             </Box>
           </Box>
-
-          <Box>
-            {/* Primary Button */}
-            <Button
-              variant="contained"
-              onClick={primaryButtonClick}
-              sx={{
-                backgroundColor: "#D3D3D3",
-                transition: "none",
-                boxShadow: "none",
-                "&:focus, &:active": {
-                  border: "none", // Ensures no border on focus or active state
-                  outline: "none", // Removes focus outline
-                  boxShadow: "none", // Removes box-shadow on active/focus
-                },
-                ":hover": {
-                  boxShadow: "none", // Removes shadow on hover
-                },
-              }}
-            >
-              {primaryButtonText}
-            </Button>
-          </Box>
-
-          
-          
         </Box>
       </Box>
     </Dialog>

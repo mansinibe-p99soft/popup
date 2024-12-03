@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({
   tertiaryText,
 }) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "200px" }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", marginTop: "200px", flexWrap:"wrap" }}>
       <Button variant="text" onClick={onSecondaryClick}>
         {secondaryText}
       </Button>

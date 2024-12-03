@@ -4,76 +4,72 @@ import Definerules from "./Components/Definerules";
 import Rulesadded from "./Components/Rulesadded";
 import PopupLayout from "./Components/Popuplayout";
 
-const App: React.FC = () => {
-  const [open, setOpen] = useState(true); // Controls popup visibility
-  const [showRulesAdded, setShowRulesAdded] = useState(false); // Toggle between rule editing/viewing
+const RulesPopup = ({open,setOpen}:{open: boolean,setOpen: React.Dispatch<React.SetStateAction<boolean>>}) => {
+  const [showRulesAdded, setShowRulesAdded] = useState(false);  
   const [rules, setRules] = useState<string[]>([
     "Ensure that promotion_id is unique for every entry to avoid duplication of promotion records.",
     "Validate promotion_id format to avoid conflicts.",
+    "Ensure that promotion_id is unique for every entry to avoid duplication of promotion records.",
+    "Validate promotion_id format to avoid conflicts.",
+    "Ensure that promotion_id is unique for every entry to avoid duplication of promotion records.",
+    "Validate promotion_id format to avoid conflicts.",
   ]);
-  const [newRule, setNewRule] = useState<string>(""); // Tracks the new custom rule input
-  const [showCustomInput, setShowCustomInput] = useState(false); // Toggles input box visibility
+  const [newRule, setNewRule] = useState<string>("");  
+  const [showCustomInput, setShowCustomInput] = useState(false);  
 
-  // Handles adding a new custom rule
   const handleAddCustomRule = () => {
     if (newRule.trim()) {
       setRules([...rules, newRule.trim()]);
-      setNewRule(""); // Clear the input box
-      setShowCustomInput(false); // Hide input box after submission
+      setNewRule(""); 
+      setShowCustomInput(false); 
     }
   };
 
-  // Handles deleting an existing rule
   const handleDeleteRule = (index: number) => {
     setRules(rules.filter((_, i) => i !== index));
   };
 
-  // Toggles the input box for adding custom rules
   const toggleCustomInput = () => {
     setShowCustomInput(!showCustomInput);
   };
 
-  // Handler for the "New Action" button
   const handleNewActionClick = () => {
     console.log("New Action Clicked!");
-    // Implement the action here
   };
 
   return (
-    <PopupLayout
+    <PopupLayout 
       open={open}
       title="Define Rule Sets with AI Assist"
-      primaryButtonText={showRulesAdded ? "Update" : "Save"} // Save or Update button
-      primaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} // Toggles rule view
+      primaryButtonText={showRulesAdded ? "Update" : "Save"}
+      primaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} 
       secondaryButtonText="Cancel"
-      secondaryButtonClick={() => setOpen(false)} // Closes popup
-      tertiaryButtonText={showRulesAdded ? "undefined" : "View Rules"} // Show "View Rules" when adding rules
-      tertiaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} // Toggles view between adding/viewing rules
-      // newActionButtonText="New Action"
-      // newActionButtonClick={handleNewActionClick} // New Action button functionality
+      secondaryButtonClick={() => setOpen(false)} 
+      tertiaryButtonText={showRulesAdded ? "Suggested rules" : "View Rules"} 
+      tertiaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} 
+      
     >
       {showRulesAdded ? (
         <Rulesadded
           rules={rules}
           onDelete={handleDeleteRule}
-          onSave={(newRules: string[]) => setRules(newRules)} // Save updated rules
-          onNewActionClick={handleNewActionClick} // Pass the "New Action" handler
+          onSave={(newRules: string[]) => setRules(newRules)} 
+          onNewActionClick={handleNewActionClick} 
         />
       ) : (
         <Definerules
           rules={rules}
-          onAddCustomRule={toggleCustomInput} // Pass toggle for "Add Custom Rule"
+          onAddCustomRule={toggleCustomInput} 
         />
       )}
 
-      {/* Show input box if "Add Custom Rule" is triggered */}
       {showCustomInput && (
-        <div style={{ marginTop: "10px" }}>
+        <div style={{ marginTop: "10px", flexWrap:"wrap" }}>
           <input
             type="text"
             placeholder="Write your custom rule..."
             value={newRule}
-            onChange={(e) => setNewRule(e.target.value)} // Track input changes
+            onChange={(e) => setNewRule(e.target.value)} 
             style={{
               width: "100%",
               padding: "8px",
@@ -83,7 +79,7 @@ const App: React.FC = () => {
             }}
           />
           <button
-            onClick={handleAddCustomRule} // Add the rule on button click
+            onClick={handleAddCustomRule} 
             style={{
               padding: "8px 12px",
               backgroundColor: "#4caf50",
@@ -101,4 +97,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default RulesPopup;

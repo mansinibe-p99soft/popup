@@ -1,35 +1,42 @@
+
 import React, { useState } from "react";
 import { Box, Typography, IconButton, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CustomPopup from "./Addcustomrules"; // Import the CustomPopup component
+import CustomPopup from "./CustomPopup";
 
 interface RulesAddedProps {
   rules: string[];
   onDelete: (index: number) => void;
-  onSave: (newRules: string[]) => void; // Function to save new rules
-  onNewActionClick: () => void; // Function for the "New Action" button
+  onSave: (newRules: string[]) => void;
+  onNewActionClick: () => void;
 }
 
 const Rulesadded: React.FC<RulesAddedProps> = ({ rules, onDelete, onSave }) => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control popup visibility
-  const [updatedRules, setUpdatedRules] = useState(rules); // Store updated rules
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [updatedRules, setUpdatedRules] = useState(rules);
 
   const handleOpenPopup = () => {
-    setIsPopupOpen(true); // Open the popup when "Add Custom" is clicked
+    setIsPopupOpen(true);
   };
 
   const handleClosePopup = () => {
-    setIsPopupOpen(false); // Close the popup
+    setIsPopupOpen(false);
   };
 
   const handleAddCustomRule = (newRules: string[]) => {
-    setUpdatedRules(newRules); // Update the rules when new rules are added
-    onSave(newRules); // Save the new rules via the onSave prop
+    setUpdatedRules(newRules);
+    onSave(newRules);
+  };
+
+  const handleDeleteRule = (index: number) => {
+    const newRules = [...updatedRules];  
+    newRules.splice(index, 1); 
+    setUpdatedRules(newRules); 
+    onDelete(index);  
   };
 
   return (
     <Box sx={{ padding: "16px" }}>
-      {/* Container for the heading and the "Add Custom" button */}
       <Box
         sx={{
           display: "flex",
@@ -40,52 +47,49 @@ const Rulesadded: React.FC<RulesAddedProps> = ({ rules, onDelete, onSave }) => {
       >
         <Typography>{`${updatedRules.length} rules added`}</Typography>
         <Box>
-          {/* "Add Custom" button */}
           <Button
-            onClick={handleOpenPopup} // Open the popup on click
+            onClick={handleOpenPopup}
             sx={{
               color: "#808000",
               transition: "none",
               boxShadow: "none",
               "&:focus, &:active": {
-                border: "none", // Ensures no border on focus or active state
-                outline: "none", // Removes focus outline
-                boxShadow: "none", // Removes box-shadow on active/focus
+                border: "none",
+                outline: "none",
+                boxShadow: "none",
               },
               ":hover": {
-                boxShadow: "none", // Removes shadow on hover
+                boxShadow: "none",
               },
             }}
           >
             Add Custom
           </Button>
-
-          
         </Box>
       </Box>
+
       <Box sx={{ display: "flex", flexDirection: "column", gap: "12px" }}>
         {updatedRules.map((rule, index) => (
           <Box
             key={index}
             sx={{
               display: "flex",
-              flexDirection: "column", // Align elements vertically
-              gap: "8px", // Gap between the rule name + delete icon and the description
+              flexDirection: "column",
+              gap: "8px",
               padding: "8px",
               border: "1px solid #ddd",
               borderRadius: "4px",
             }}
           >
-            {/* Flex container for rule name and delete icon */}
             <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                alignItems: "center", // Align rule name and delete icon in one line
+                alignItems: "center",
               }}
             >
               <Typography variant="body1">Rule {index + 1}</Typography>
-              <IconButton onClick={() => onDelete(index)}>
+              <IconButton onClick={() => handleDeleteRule(index)}>
                 <DeleteIcon />
               </IconButton>
             </Box>
@@ -96,11 +100,12 @@ const Rulesadded: React.FC<RulesAddedProps> = ({ rules, onDelete, onSave }) => {
           </Box>
         ))}
       </Box>
+
       <CustomPopup
         open={isPopupOpen}
         onClose={handleClosePopup}
         existingRules={updatedRules}
-        onSave={handleAddCustomRule} 
+        onSave={handleAddCustomRule}
       />
     </Box>
   );
