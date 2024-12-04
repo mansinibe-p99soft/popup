@@ -45,7 +45,7 @@ const RulesPopup = ({open,setOpen}:{open: boolean,setOpen: React.Dispatch<React.
       primaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} 
       secondaryButtonText="Cancel"
       secondaryButtonClick={() => setOpen(false)} 
-      tertiaryButtonText={showRulesAdded ? "Suggested rules" : "View Rules"} 
+      tertiaryButtonText={showRulesAdded ? "Suggested rules" : "View rules"} 
       tertiaryButtonClick={() => setShowRulesAdded(!showRulesAdded)} 
       
     >

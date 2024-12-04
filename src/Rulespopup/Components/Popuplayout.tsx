@@ -40,23 +40,24 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             marginTop: "16px",
             flexWrap: "wrap",
+            marginRight:"4%"
           }}
         >
           <Box
             sx={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "",
               alignItems: "center",
               flexWrap: "wrap",
-              gap: "px"
+              
             }}
           >
              {tertiaryButtonText && (
-              <Box sx={{ padding: "4px 12px", borderRadius: "1px", marginRight:"120px" }}>
+              <Box sx={{  }}>
                 <Button
                   variant="text"
                   onClick={tertiaryButtonClick}
@@ -66,6 +67,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                     border: "1px solid",
                     borderColor: "#D3D3D3",
                     transition: "none",
+                    textTransform: "lowercase",
                     outline: "none", 
                     "&:focus, &:active": {
                       border: "1px solid #D3D3D3",  
@@ -74,6 +76,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                     ":hover": {
                       boxShadow: "#ECF0EA",
                       borderColor: "#ECF0EA",
+                      textTransform:"lowercase"
                     },
                   }}
                 >
@@ -90,6 +93,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                   color: "#000000",
                   border: "1px solid",
                   borderColor: "#ECF0EA",
+                  textTransform: "lowercase",
                   transition: "none",
                   "&:focus, &:active": {
                     borderColor: "#ECF0EA", 
@@ -112,6 +116,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                   backgroundColor: "#D3D3D3",
 
                   transition: "none",
+                  textTransform: "lowercase",
                   boxShadow: "none",
                   "&:focus, &:active": {
                     border: "none", 
