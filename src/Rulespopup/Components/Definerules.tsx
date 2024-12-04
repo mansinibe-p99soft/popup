@@ -88,7 +88,7 @@ const Definerules: React.FC<DefineRulesProps> = ({
           marginLeft: "16px",
         }}
       >
-        Here are some suggested rule sets for this domain
+        Here are some suggested rule 
       </Typography>
       <Typography
         sx={{
@@ -117,6 +117,11 @@ const Definerules: React.FC<DefineRulesProps> = ({
               boxShadow: "none",
               backgroundColor: "#f8f8f8",
             },
+            "&:focus, &:active": {
+                border: "none",
+                outline: "none",
+                boxShadow: "none",
+              },
           }}
         >
           Add Custom
@@ -174,6 +179,12 @@ const Definerules: React.FC<DefineRulesProps> = ({
                     fontSize: { xs: "12px", sm: "14px" },
                     textTransform: "none",
                     color: "#808000",
+                    "&:focus, &:active": {
+                      border: "none",
+                      outline: "none",
+                      boxShadow: "none",
+                    },
+
                   }}
                 >
                   Add

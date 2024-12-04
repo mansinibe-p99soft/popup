@@ -67,7 +67,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                     border: "1px solid",
                     borderColor: "#D3D3D3",
                     transition: "none",
-                    textTransform: "lowercase",
+                    textTransform: "none",
                     outline: "none", 
                     "&:focus, &:active": {
                       border: "1px solid #D3D3D3",  
@@ -93,7 +93,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                   color: "#000000",
                   border: "1px solid",
                   borderColor: "#ECF0EA",
-                  textTransform: "lowercase",
+                  textTransform: "none",
                   transition: "none",
                   "&:focus, &:active": {
                     borderColor: "#ECF0EA", 
@@ -116,7 +116,7 @@ const PopupLayout: React.FC<PopupLayoutProps> = ({
                   backgroundColor: "#D3D3D3",
 
                   transition: "none",
-                  textTransform: "lowercase",
+                  textTransform: "none",
                   boxShadow: "none",
                   "&:focus, &:active": {
                     border: "none", 

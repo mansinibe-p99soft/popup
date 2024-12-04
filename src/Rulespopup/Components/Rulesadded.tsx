@@ -58,8 +58,15 @@ const Rulesadded: React.FC<RulesAddedProps> = ({ rules, onDelete, onSave }) => {
                 outline: "none",
                 boxShadow: "none",
               },
-              ":hover": {
+              marginLeft: "auto",
+              fontSize: { xs: "12px", sm: "14px" },
+              textTransform: "none",
+              background: "#ffffff",
+              alignItems: "end",
+              textAlign: "left",
+              "&:hover": {
                 boxShadow: "none",
+                backgroundColor: "#f8f8f8",
               },
             }}
           >
